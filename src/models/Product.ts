@@ -7,6 +7,7 @@ const schema = new Schema({
   description: String,
   price: Number,
   stock: Number,
+  provider: String,
   imagePath: String
 });
 
@@ -17,6 +18,7 @@ interface IProduct extends Document {
   description: string;
   price: number;
   stock: number;
+  provider: string;
   imagePath: string;
 }
 

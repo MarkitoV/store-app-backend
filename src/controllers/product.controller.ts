@@ -21,7 +21,7 @@ export async function getProduct(req: Request, res: Response): Promise<Response>
 
 export async function createProduct(req: Request, res: Response): Promise<Response> {
 
-  const { name, container, size, description, price, stock } = req.body;
+  const { name, container, size, description, price, stock, provider } = req.body;
   const newProduct = {
     name,
     container,
@@ -29,6 +29,7 @@ export async function createProduct(req: Request, res: Response): Promise<Respon
     description,
     price,
     stock,
+    provider,
     imagePath: req.file.path
   };
   const product = new Product(newProduct);
@@ -57,7 +58,7 @@ export async function deleteProduct(req: Request, res: Response): Promise<Respon
 export async function updateProduct(req: Request, res: Response): Promise<Response> {
 
   const { id } = req.params;
-  const { name, container, size, description, price, stock } = req.body;
+  const { name, container, size, description, price, stock, provider } = req.body;
   const updatedProduct = await Product.findByIdAndUpdate(id, {
     name,
     container,
@@ -65,6 +66,7 @@ export async function updateProduct(req: Request, res: Response): Promise<Respon
     description,
     price,
     stock,
+    provider
   }, { new: true });
   
   return res.json({
